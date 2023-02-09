@@ -65,32 +65,58 @@ Le stock du magasin sera aussi le stock du drive.
 
 ## <a id="da2_order_preparing"> Diagramme d'activité 2 - Préparation de la commande
 
-
-
+asdas
 ## <a id="class_diagram"> Diagramme de classe 
 
+asdasd
 ### <a id="data_classification"> Data classification
 
 Petit récapitulatif des différentes grandes parties de données.
 
-_group : Information sur la sociétée mère
+#### Données concernant le groupe Les Mouquetons
+- **_group** : Information sur la sociétée mère
+- **_group_secret**: Table rendant le token principale de décryptage, sera mise à jour toute les heures 
 
-_shop : Données du magasin
-      - Chaque Magasin devra avoir un identifiant unique
+#### Données concernant le magasin :
+- **_shop** : Données du magasin. Chaque Magasin devra avoir un identifiant unique. 
 
-_product : Données produits (fournie par la DSI)
+- **_product** : Données produits (fournie par la DSI)
 
-_stock : Définitions des prix et quantités en stock
+- **_stock** : Définitions des prix et quantités en stock
 
-_warehouse: Définitions des entrepôts et locals de rangements contient un paramètre de nature du produit
+- **_warehouse**: Définitions des entrepôts et locals de rangements contient un paramètre de nature du produit
 
-_user : Définitions des données utilisateurs, répartie par type pour renforcer la difficulté d'accès aux données d'autre type d'utilisateurs avec une authentification forte.
-_user_guest : Données des utilisateurs générer par les visiteurs ne possédant pas encore de compte.
-_user_customer : Tables des données utilisateurs.
-_user_logistician : Peut avoir deux fonction, Préparateur ou Délivreur
-_user_checkout: Simplement les identifiants de connexion au terminal caisse pour le règlement des commandes en espèce ou chèque
-_user_dsi : Tables des données d'accès à l'ensembles des fonctionnalités disponible via Web Services.
+#### Définitions des données utilisateurs, répartie par type pour renforcer la difficulté d'accès aux données d'autre type d'utilisateurs avec une authentification forte.
 
+##### Visiteur (guest)
+- **_user_guest** : Données des utilisateurs générer par les visiteurs ne possédant pas encore de compte.
+- **_user_guest_tmp_cart**: Donnée du panier temporaire pour les utilisateurs non connectés
+- **_user_guest_tmp_info**: Coordonnées et adresse clients 
+- **_user_guest_tmp_order**: Commandes des utilisateurs non enregistré à part de la table des commande principale pour limité leur accès au données sans possibilité légale de retracer leur provenance.
+
+##### Client Authentifié (customer)
+- **_user_customer** : Tables des données utilisateurs. (id, email, clef_publique_cryptée(mise à jour toutes les heures), date de création du compte)
+- **_user_customer_secrets**: Table protégér par un jwt token comportant les données sensibles du clients. (mot de passe, clefs privé) 
+- **_user_customer_info**: Informations(Prénom, Nom, Date de naissance), coordonnées(Téléphone, Email) et adresses du clients(Spé Numero rue, Numéro de la rue, Nom de la rue, Région, Pays)
+##### Utilisateurs Logisticien (logisticiens)
+- **_user_logistician** : Peut avoir deux fonction, Préparateur ou Délivreur. 
+
+##### Terminal de paiement en caisse
+- **_user_checkout**: Simplement les identifiants de connexion au terminal caisse pour le règlement des commandes en espèce ou chèque (id, name, )
+- **_user_checkout_secret**: 
+
+##### Utilisateurs exterieurs (DSI)
+- **_user_dsi** : Tables des données d'accès à l'ensembles des fonctionnalités disponible via Web Services.
+- **_user_dsi_secret**: Données d'identification (id, Token, identifiants unique, empreinte etc..)
+
+#### Autre donnée:
+
+- **_adress** : Table de regroupement des adresses
+- **_taxe_rules** : Définition des différentes taxes
+- **_payment_provider**: Définitions des différents information de connexion au fournisseurs de méthode de payment (ID, nom du fournisseur, Identifiant externe, Mots de passe, Token, autre...)
+- **_cookie_** : Définitions des authorisation des cookies par utilisateurs
+- **_cookie_product**: Données récupérée par les cookies concernant les produits, leurs demandes, statistiques, moyennes etc..
+- **_cookie_user**: Données récupéer par les cookies concernant les utilisateurs de la plateforme.
 
 
 
