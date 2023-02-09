@@ -10,32 +10,7 @@ Réalisation d'une application Web des gestion des réservations et présentatio
      - [1.3- Définition des limites du/des système(s)]()
 - [2.0-Diagrammes d'utilisation](./2-usage_diagram)
      - [2.1- Cas d'utilisation pour un visiteur non authentifié](./2-usage_diagram/usage_diagram_visitor.png)
-          ```ts
-          type Visitor = {
-               access: enum('webapp', 'dashboard'),
-               informations: {
-                    ip_adress: string,
-                    country: string,
-               },
-               routesRequests: {
-                    pagesViewedIds: Array<string>,
-                    articlesViewedIds: Array<string>,
-                    artistsViewsIds: Array<string>,
-                    artistGroupsViewedIds: Array<string>,
-                    eventsViewedIds: Array<string>,
-                    componentsViewsIds: Array<string>,
-               },
-               session: {
-                    startTime: date,
-                    token: string, 
-                    public_key: string
-               },
-               cookies: {
-                    [...]
-               }
 
-          }
-          ```
           - **SingUp** : Création d'un compte client
                - **Systeme** : Web App Public
                - **Scénario** : *L'utilisateur lance un évènement "signup", qui appel un composant. Il sera demandé soit l'identifaction avec un compte Google, Facebook, Github directement ou via un formulaire (email, nom, prénom, date de naissance). Pour l'enregistrement via formulaire, l'utilisateur recevra un lien d'activation par Email qui le rediregera vers la Web App lui affichant son mots de passe qu'il pourra copier.*
@@ -73,9 +48,10 @@ Réalisation d'une application Web des gestion des réservations et présentatio
           - **cmsArticleManagment** : Gestion des articles 
           - **artistManagment** : Gestion de la base Artistes
           - **artistGroupManagment** : Gestion de la base des groupes d'artiste
+          - **sceneManagment** : Gestion des scènes d'une éditions
           - **eventManagment** : Gestion des concerts
                - **Système** : Dashboard
-               - **Sénario** : *(a faire)*
+               - **Sénario** : *Un Web Master se rendant dans le dashboard, sur la page concerts peut visualiser tous les concert(dit: "event"). Il aura accès à plusieurs fonctionnalité de création, planification, modification ou suppression d'un concert. Un concert portera les information: trois images reponsive de fond,un titre, une description, le(s) artiste(s)/groupe(s) d'artiste(s) associé, la scène affectée, une date et heure de début, une date et heure de fin, des tags, *
                - [**Diagramme d'activité** (en cours)]()
                - [**Diagramme de séquence** (en cours)]() 
                - [**Diagramme des classes** (en cours)]()
@@ -121,5 +97,28 @@ Réalisation d'une application Web des gestion des réservations et présentatio
      - [3.z NewsletterRegistration]()
 
 
+          ```ts
+          type Visitor = {
+               access: enum('webapp', 'dashboard'),
+               informations: {
+                    ip_adress: string,
+                    country: string,
+               },
+               routesRequests: {
+                    pagesViewedIds: Array<string>,
+                    articlesViewedIds: Array<string>,
+                    artistsViewsIds: Array<string>,
+                    artistGroupsViewedIds: Array<string>,
+                    eventsViewedIds: Array<string>,
+                    componentsViewsIds: Array<string>,
+               },
+               session: {
+                    startTime: date,
+                    token: string, 
+                    public_key: string
+               },
+               cookies: {
+                    [...]
+               }
 
-
+          }```
