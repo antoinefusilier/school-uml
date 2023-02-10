@@ -55,6 +55,10 @@ Le stock du magasin sera aussi le stock du drive.
 
 ## <a id="da1_customer_order"> Diagrame d'activité 1 - Commande client
 
+### Connexion client au site
+
+![Diag](./D_activity_user_connexion_shop.png)
+
 ### Ajout au panier
 
 ![Diag](./D_activity_customer_add_to_cart.png)
